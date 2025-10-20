@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>من فكرة إلى شركة | خارطتك نحو الريادة في اليمن</title>
+    <meta name="description"
+        content="منصة تفاعلية ترشدك خطوة بخطوة عبر مسارات بناء مشروعك، وتصلك بالدعم والتمويل المناسب في كل مرحلة.">
+
+    <!-- Google Fonts (Tajawal) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap & Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Your Custom CSS (style.css ) -->
+    <style>
+        /* ================== General & Typography ================== */
+        :root {
+            --bs-primary: #0a4275;
+            /* Dark Blue */
+            --bs-secondary: #6c757d;
+            /* Gray */
+            --bs-success: #198754;
+            /* Green */
+            --bs-info: #0dcaf0;
+            /* Cyan */
+            --bs-warning: #ffc107;
+            /* Yellow */
+            --bs-danger: #dc3545;
+            /* Red */
+            --bs-light: #f8f9fa;
+            --bs-dark: #212529;
+            --bs-font-sans-serif: 'Tajawal', sans-serif;
+        }
+
+        body {
+            font-family: var(--bs-font-sans-serif);
+            background-color: #fdfdfd;
+        }
+
+        .section-title {
+            color: var(--bs-dark);
+        }
+
+        /* ================== New Hero Section ================== */
+        .hero-section-new {
+            background-color: #e9ecef;
+            padding: 100px 0;
+            color: var(--bs-dark);
+        }
+
+        .hero-section-new h1 {
+            font-weight: 800 !important;
+        }
+
+        .hero-section-new .btn-primary {
+            background-color: var(--bs-primary);
+            border-color: var(--bs-primary);
+            transition: all 0.3s ease;
+        }
+
+        .hero-section-new .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(10, 66, 117, 0.2);
+        }
+
+        /* ================== Footer ================== */
+        .footer a {
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--bs-white) !important;
+        }
+
+
+        /* ================== Roadmap Section ================== */
+        .roadmap-section {
+            background-color: var(--bs-light);
+            overflow-x: hidden;
+            /* Hide horizontal scroll on small screens */
+        }
+
+        .roadmap-container {
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .roadmap-line {
+            position: absolute;
+            top: 60px;
+            /* Align with the center of the milestone */
+            right: 0;
+            width: 100%;
+            height: 4px;
+            background-color: #e9ecef;
+            z-index: 1;
+        }
+
+        .roadmap-stage {
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 50px;
+            z-index: 2;
+        }
+
+        /* Stagger the stages */
+        .roadmap-stage:nth-child(odd) {
+            flex-direction: row;
+        }
+
+        .roadmap-stage:nth-child(even) {
+            flex-direction: row-reverse;
+            text-align: left;
+        }
+
+        .roadmap-milestone {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--bs-primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            border: 4px solid var(--bs-light);
+            margin: 0 20px;
+        }
+
+        .roadmap-content {
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            width: calc(50% - 60px);
+            /* Adjust width based on milestone and margin */
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .roadmap-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .roadmap-stage:nth-child(even) .roadmap-content {
+            margin-right: auto;
+            /* Push to the left */
+        }
+
+        .roadmap-stage:nth-child(odd) .roadmap-content {
+            margin-left: auto;
+            /* Push to the right */
+        }
+
+        .roadmap-sub-items {
+            margin-top: 15px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+
+        .roadmap-sub-items.active {
+            max-height: 200px;
+            /* Adjust as needed */
+        }
+
+        .sub-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+            opacity: 0;
+            transform: translateY(-10px);
+            animation: fadeIn 0.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .sub-item i {
+            color: var(--bs-primary);
+            margin-left: 10px;
+        }
+
+        .roadmap-support {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .roadmap-support h6 {
+            font-size: 0.9rem;
+            color: var(--bs-secondary);
+            margin-bottom: 10px;
+        }
+
+        .support-tags .badge {
+            padding: 8px 12px;
+            font-size: 0.85rem;
+            text-decoration: none;
+            margin: 2px;
+            transition: transform 0.2s ease;
+        }
+
+        .support-tags .badge:hover {
+            transform: scale(1.05);
+        }
+
+        /* Responsive adjustments for roadmap */
+        @media (max-width: 768px) {
+            .roadmap-line {
+                right: 20px;
+                /* Align with the new milestone position */
+                width: 4px;
+                height: 100%;
+            }
+
+            .roadmap-stage,
+            .roadmap-stage:nth-child(even) {
+                flex-direction: row;
+                text-align: right;
+            }
+
+            .roadmap-content {
+                width: calc(100% - 60px);
+            }
+
+            .roadmap-stage:nth-child(odd) .roadmap-content,
+            .roadmap-stage:nth-child(even) .roadmap-content {
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================== Navbar ================== -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/rowad_logo.jpeg" alt="شعار مؤسسة رواد" style="height: 40px;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"
+                aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="main-nav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link active" href="index1.html">الرئيسية 1</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index2.html">الرئيسية 2</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index3.html">الرئيسية 3</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index4.html">الرئيسية 4</a></li>
+                </ul>
+                <a href="#" class="btn btn-outline-primary">أضف جهتك</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ================== New Hero Section ================== -->
+    <header class="hero-section-new text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold">من فكرة إلى شركة: خارطتك نحو الريادة في اليمن</h1>
+            <p class="lead col-lg-8 mx-auto mb-4">منصة تفاعلية ترشدك خطوة بخطوة عبر مسارات بناء مشروعك، وتصلك بالدعم
+                والتمويل المناسب في كل مرحلة.</p>
+            <a href="#roadmap" class="btn btn-primary btn-lg fw-bold px-5 py-3">ابدأ رحلتك الآن <i
+                    class="bi bi-arrow-down-circle-fill ms-2"></i></a>
+        </div>
+    </header>
+
+    <main>
+        <!-- ================== Entrepreneur's Roadmap Section ================== -->
+        <section id="roadmap" class="roadmap-section py-5">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="section-title fw-bold">خارطة طريق رائد الأعمال</h2>
+                    <p class="lead text-muted">رحلتك الريادية تتكون من محطات رئيسية. اكتشف كل محطة وما تحتاجه للنجاح فيها.</p>
+                </div>
+
+                <div class="roadmap-container">
+                    <!-- The main timeline line -->
+                    <div class="roadmap-line"></div>
+
+                    <!-- Stage 1: Ideation & Modeling -->
+                    <div class="roadmap-stage" id="stage-1">
+                        <div class="roadmap-milestone">1</div>
+                        <div class="roadmap-content">
+                            <h3 class="fw-bold">مرحلة الفكرة والنمذجة</h3>
+                            <p>حوّل فكرتك اللامعة إلى نموذج عمل قوي ومستدام.</p>
+                            <div class="roadmap-sub-items">
+                                <!-- Sub-items will be injected by JS -->
+                            </div>
+                            <div class="roadmap-support">
+                                <h6>تحتاج في هذه المرحلة إلى:</h6>
+                                <div class="support-tags">
+                                    <a href="#" class="badge bg-success-subtle text-success-emphasis">تدريب وتوجيه</a>
+                                    <a href="#" class="badge bg-info-subtle text-info-emphasis">مساحات عمل</a>
+                                    <a href="#" class="badge bg-warning-subtle text-warning-emphasis">فعاليات تشبيك</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stage 2: Growth & Execution -->
+                    <div class="roadmap-stage" id="stage-2">
+                        <div class="roadmap-milestone">2</div>
+                        <div class="roadmap-content">
+                            <h3 class="fw-bold">مرحلة النمو والتنفيذ</h3>
+                            <p>أطلق منتجك الأولي، ابحث عن عملائك الأوائل، وابدأ في بناء فريقك.</p>
+                             <div class="roadmap-sub-items"></div>
+                             <div class="roadmap-support">
+                                <h6>تحتاج في هذه المرحلة إلى:</h6>
+                                <div class="support-tags">
+                                    <a href="#" class="badge bg-danger-subtle text-danger-emphasis">حاضنات أعمال</a>
+                                    <a href="#" class="badge bg-primary-subtle text-primary-emphasis">تمويل تأسيسي</a>
+                                    <a href="#" class="badge bg-secondary-subtle text-secondary-emphasis">خبراء واستشاريون</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stage 3: Scaling & Sustainability -->
+                    <div class="roadmap-stage" id="stage-3">
+                        <div class="roadmap-milestone">3</div>
+                        <div class="roadmap-content">
+                            <h3 class="fw-bold">مرحلة التوسع والاستدامة</h3>
+                            <p>وسّع نطاق عملياتك، ادخل أسواقاً جديدة، واضمن استدامة مشروعك.</p>
+                             <div class="roadmap-sub-items"></div>
+                             <div class="roadmap-support">
+                                <h6>تحتاج في هذه المرحلة إلى:</h6>
+                                <div class="support-tags">
+                                    <a href="#" class="badge bg-danger-subtle text-danger-emphasis">مسرّعات أعمال</a>
+                                    <a href="#" class="badge bg-primary-subtle text-primary-emphasis">استثمار جريء</a>
+                                    <a href="#" class="badge bg-dark-subtle text-dark-emphasis">دعم قانوني</a>
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================== Ecosystem Sunburst Chart Section ================== -->
+        <section class="sunburst-section py-5 bg-white">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="section-title fw-bold">استكشف منظومة الدعم</h2>
+                    <p class="lead text-muted">تصفح فئات الدعم المختلفة والجهات المنتمية لكل فئة عبر هذا المخطط
+                        التفاعلي.</p>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-8">
+                        <div id="sunburst-chart-container" style="width: 100%; height: 600px;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ================== Footer ================== -->
+    <footer class="bg-dark text-white pt-5 pb-3 mt-5">
+        <div class="container text-center text-md-end">
+            <div class="row">
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <h5 class="text-uppercase fw-bold mb-4">خارطة ريادة الأعمال</h5>
+                    <p>مبادرة من مؤسسة رواد تهدف إلى توحيد وتسهيل الوصول إلى جميع الفاعلين في منظومة ريادة الأعمال
+                        اليمنية.</p>
+                </div>
+                <div class="col-md-6 col-lg-2 mb-4">
+                    <h5 class="text-uppercase fw-bold mb-4">روابط</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#!" class="text-white-50">من نحن</a></li>
+                        <li><a href="#" class="text-white-50">دليل الجهات</a></li>
+                        <li><a href="#" class="text-white-50">الخريطة</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-12 mb-4">
+                    <h5 class="text-uppercase fw-bold mb-4">تابعنا</h5>
+                    <a href="#!" class="btn btn-outline-light btn-floating m-1" role="button"><i
+                            class="bi bi-facebook"></i></a>
+                    <a href="#!" class="btn btn-outline-light btn-floating m-1" role="button"><i
+                            class="bi bi-twitter-x"></i></a>
+                    <a href="#!" class="btn btn-outline-light btn-floating m-1" role="button"><i
+                            class="bi bi-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2025 جميع الحقوق محفوظة: <a class="text-white fw-bold" href="#">مؤسسة رواد</a>
+        </div>
+    </footer>
+
+    <!-- JS Files -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Your Custom JS for the roadmap (roadmap.js ) -->
+    <!-- <script src="assets/js/roadmap.js"></script> -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // 1. Data for the roadmap stages
+            const roadmapData = {
+                'stage-1': {
+                    title: 'مرحلة الفكرة والنمذجة',
+                    subItems: [
+                        { icon: 'bi-lightbulb', text: 'توليد وتطوير الفكرة' },
+                        { icon: 'bi-clipboard-data', text: 'دراسة الجدوى وأبحاث السوق' },
+                        { icon: 'bi-kanban', text: 'بناء نموذج العمل التجاري (BMC)' },
+                        { icon: 'bi-file-earmark-text', text: 'إعداد خطة العمل' }
+                    ]
+                },
+                'stage-2': {
+                    title: 'مرحلة النمو والتنفيذ',
+                    subItems: [
+                        { icon: 'bi-box-seam', text: 'تطوير المنتج الأولي (MVP)' },
+                        { icon: 'bi-megaphone', text: 'استراتيجيات التسويق والمبيعات' },
+                        { icon: 'bi-people', text: 'بناء وتوظيف الفريق' },
+                        { icon: 'bi-shield-check', text: 'التسجيل القانوني للشركة' }
+                    ]
+                },
+                'stage-3': {
+                    title: 'مرحلة التوسع والاستدامة',
+                    subItems: [
+                        { icon: 'bi-graph-up-arrow', text: 'التوسع في أسواق جديدة' },
+                        { icon: 'bi-cash-coin', text: 'جولات استثمارية متقدمة' },
+                        { icon: 'bi-gear-wide-connected', text: 'تحسين وأتمتة العمليات' },
+                        { icon: 'bi-globe', text: 'التوسع الإقليمي أو العالمي' }
+                    ]
+                }
+            };
+
+            // 2. Function to create and inject sub-items
+            function createSubItems(stageId, subItems) {
+                const container = document.querySelector(`#${stageId} .roadmap-sub-items`);
+                if (!container) return;
+
+                container.innerHTML = ''; // Clear previous items
+
+                subItems.forEach((item, index) => {
+                    const div = document.createElement('div');
+                    div.className = 'sub-item';
+                    div.style.animationDelay = `${index * 0.1}s`; // Staggered animation
+                    div.innerHTML = `<i class="bi ${item.icon}"></i><span>${item.text}</span>`;
+                    container.appendChild(div);
+                });
+            }
+
+            // 3. Add click event listeners to each stage content
+            const stages = document.querySelectorAll('.roadmap-stage');
+
+            stages.forEach(stage => {
+                const content = stage.querySelector('.roadmap-content');
+                const subItemsContainer = stage.querySelector('.roadmap-sub-items');
+                const stageId = stage.id;
+
+                content.addEventListener('click', () => {
+                    const isActive = subItemsContainer.classList.contains('active');
+
+                    // Deactivate all stages first
+                    document.querySelectorAll('.roadmap-sub-items').forEach(container => {
+                        container.classList.remove('active');
+                        container.innerHTML = '';
+                    });
+                    document.querySelectorAll('.roadmap-content').forEach(contentDiv => {
+                        contentDiv.classList.remove('active');
+                    });
+
+                    // If the clicked stage was not active, activate it
+                    if (!isActive && roadmapData[stageId]) {
+                        createSubItems(stageId, roadmapData[stageId].subItems);
+                        subItemsContainer.classList.add('active');
+                        content.classList.add('active'); // Add visual cue to the content box
+                    }
+                });
+            });
+
+            console.log('Roadmap initialized successfully!');
+        });
+
+    </script>
+        <!-- JS Files -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- <script src="assets/js/roadmap.js"></script> -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+    
+    // 1. Data for the roadmap stages
+    const roadmapData = {
+        'stage-1': {
+            subItems: [
+                { icon: 'bi-lightbulb', text: 'توليد وتطوير الفكرة' },
+                { icon: 'bi-clipboard-data', text: 'دراسة الجدوى وأبحاث السوق' },
+                { icon: 'bi-kanban', text: 'بناء نموذج العمل التجاري (BMC)' },
+                { icon: 'bi-file-earmark-text', text: 'إعداد خطة العمل' }
+            ]
+        },
+        'stage-2': {
+            subItems: [
+                { icon: 'bi-box-seam', text: 'تطوير المنتج الأولي (MVP)' },
+                { icon: 'bi-megaphone', text: 'استراتيجيات التسويق والمبيعات' },
+                { icon: 'bi-people', text: 'بناء وتوظيف الفريق' },
+                { icon: 'bi-shield-check', text: 'التسجيل القانوني للشركة' }
+            ]
+        },
+        'stage-3': {
+            subItems: [
+                { icon: 'bi-graph-up-arrow', text: 'التوسع في أسواق جديدة' },
+                { icon: 'bi-cash-coin', text: 'جولات استثمارية متقدمة' },
+                { icon: 'bi-gear-wide-connected', text: 'تحسين وأتمتة العمليات' },
+                { icon: 'bi-globe', text: 'التوسع الإقليمي أو العالمي' }
+            ]
+        }
+    };
+    
+    // 2. Function to create and inject sub-items
+    function createSubItems(stageId, subItems) {
+        const container = document.querySelector(`#${stageId} .roadmap-sub-items`);
+        if (!container) return;
+        container.innerHTML = '';
+        subItems.forEach((item, index) => {
+            const div = document.createElement('div');
+            div.className = 'sub-item';
+            div.style.animationDelay = `${index * 0.1}s`;
+            div.innerHTML = `<i class="bi ${item.icon}"></i><span>${item.text}</span>`;
+            container.appendChild(div);
+        });
+    }
+    
+    // 3. Add click event listeners to each stage content
+    const stages = document.querySelectorAll('.roadmap-stage');
+    stages.forEach(stage => {
+        const content = stage.querySelector('.roadmap-content');
+        const subItemsContainer = stage.querySelector('.roadmap-sub-items');
+        const stageId = stage.id;
+    
+        content.addEventListener('click', () => {
+            const isActive = subItemsContainer.classList.contains('active');
+            document.querySelectorAll('.roadmap-sub-items').forEach(c => { c.classList.remove('active'); c.innerHTML = ''; });
+            document.querySelectorAll('.roadmap-content').forEach(c => c.classList.remove('active'));
+            if (!isActive && roadmapData[stageId]) {
+                createSubItems(stageId, roadmapData[stageId].subItems);
+                subItemsContainer.classList.add('active');
+                content.classList.add('active');
+            }
+        });
+    });
+    
+    // 4. Function to draw SVG connectors
+    function drawConnectors() {
+        const svg = document.querySelector('.roadmap-svg-connectors');
+        if (!svg || window.innerWidth < 992) {
+            if(svg) svg.innerHTML = '';
+            return;
+        };
+        svg.innerHTML = '';
+    
+        const m1 = document.querySelector('#stage-1 .roadmap-milestone');
+        const m2 = document.querySelector('#stage-2 .roadmap-milestone');
+        const m3 = document.querySelector('#stage-3 .roadmap-milestone');
+        if (!m1 || !m2 || !m3) return;
+    
+        const svgRect = svg.getBoundingClientRect();
+    
+        function createPath(startElem, endElem, className) {
+            const startRect = startElem.getBoundingClientRect();
+            const endRect = endElem.getBoundingClientRect();
+            const startX = startRect.left + startRect.width / 2 - svgRect.left;
+            const startY = startRect.top + startRect.height / 2 - svgRect.top;
+            const endX = endRect.left + endRect.width / 2 - svgRect.left;
+            const endY = endRect.top + endRect.height / 2 - svgRect.top;
+            const controlX1 = startX + (endX - startX) * 0.25;
+            const controlY1 = startY - 80;
+            const controlX2 = startX + (endX - startX) * 0.75;
+            const controlY2 = endY + 80;
+            const pathData = `M ${startX} ${startY} C ${controlX1} ${controlY1}, ${controlX2} ${controlY2}, ${endX} ${endY}`;
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path' );
+            path.setAttribute('d', pathData);
+            path.setAttribute('class', className);
+            svg.appendChild(path);
+        }
+    
+        createPath(m1, m2, 'connector-1');
+        createPath(m2, m3, 'connector-2');
+    }
+    
+    drawConnectors();
+    window.addEventListener('resize', drawConnectors);
+    console.log('Roadmap initialized successfully!');
+    });
+    
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+        <!-- <script src="assets/js/sunburst.js"></script> -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+        const chartDom = document.getElementById('sunburst-chart-container');
+        if (!chartDom) return;
+    
+        const myChart = echarts.init(chartDom);
+    
+        const data = {
+            name: 'ريادة الأعمال',
+            itemStyle: { color: '#0a4275' },
+            children: [
+                {
+                    name: 'التمويل',
+                    itemStyle: { color: '#198754' },
+                    children: [
+                        { name: 'بنك الأمل', value: 1 },
+                        { name: 'صندوق الاستثمار', value: 1 },
+                        { name: 'FasterCapital', value: 1 },
+                    ]
+                },
+                {
+                    name: 'الدعم المؤسسي',
+                    itemStyle: { color: '#dc3545' },
+                    children: [
+                        { name: 'مؤسسة رواد', value: 1 },
+                        { name: 'حاضنة صنعاء', value: 1 },
+                        { name: 'مسرعة عدن', value: 1 },
+                        { name: 'Yemen Business Club', value: 1 },
+                    ]
+                },
+                {
+                    name: 'رأس المال البشري',
+                    itemStyle: { color: '#ffc107' },
+                    children: [
+                        { name: 'جامعة صنعاء', value: 1 },
+                        { name: 'جامعة حضرموت', value: 1 },
+                        { name: 'مبادرة تدريب', value: 1 },
+                    ]
+                },
+                {
+                    name: 'السياسات',
+                    itemStyle: { color: '#0dcaf0' },
+                    children: [
+                        { name: 'وزارة الصناعة', value: 1 },
+                        { name: 'الهيئة العامة للاستثمار', value: 1 },
+                    ]
+                }
+            ]
+        };
+    
+        const option = {
+            series: {
+                type: 'sunburst',
+                data: [data],
+                radius: [0, '95%'],
+                sort: undefined,
+                emphasis: {
+                    focus: 'ancestor'
+                },
+                levels: [
+                    { r0: '0%', r: '15%', itemStyle: { borderWidth: 2, borderColor: '#fff' }, label: { fontSize: 16, fontWeight: 'bold', color: '#fff' } },
+                    { r0: '15%', r: '55%', itemStyle: { borderWidth: 3, borderColor: '#fff' }, label: { rotate: 'tangential', fontSize: 14, color: '#fff', textShadowBlur: 4, textShadowColor: 'rgba(0,0,0,0.3)' } },
+                    { r0: '55%', r: '95%', itemStyle: { borderWidth: 2, borderColor: '#fff', opacity: 0.9 }, label: { align: 'right', fontSize: 12, color: '#343a40' } }
+                ]
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: '{b}'
+            }
+        };
+    
+        myChart.setOption(option);
+        window.addEventListener('resize', () => myChart.resize());
+    });
+    
+        </script>
+
+</body>
+
+</html>
